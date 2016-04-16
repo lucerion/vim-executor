@@ -4,7 +4,7 @@
 " Author:       Alexander Skachko <alexander.skachko@gmail.com>
 " Homepage:     https://github.com/lucerion/vim-executor
 " Version:      0.1
-" Licence:      MIT
+" Licence:      BSD-3-Clause
 " ===========================================================================
 
 if exists('g:loaded_executor') || &compatible || (v:version < 700)
