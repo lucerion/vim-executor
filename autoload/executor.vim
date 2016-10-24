@@ -53,6 +53,7 @@ func! s:open_result(result, buffer_name)
     \ })
   call s:set_buffer_defaults()
   call append(0, split(a:result, "\n"))
+  silent exec 'normal! Gdd'
 endfunc
 
 func! s:buffer_name(command)
