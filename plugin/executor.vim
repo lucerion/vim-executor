@@ -23,6 +23,10 @@ if !exists('g:executor_buffer_name')
   let g:executor_buffer_name = '{command}'
 endif
 
+if !exists('g:executor_reuse_buffer')
+  let g:executor_reuse_buffer = 0
+endif
+
 comm! -nargs=* -range=0 -complete=shellcmd Exec
   \ call executor#exec(<line1>, <line2>, <count>, <q-args>)
 

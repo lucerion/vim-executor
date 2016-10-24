@@ -7,6 +7,8 @@
 " Licence:      BSD-3-Clause
 " ===========================================================================
 
+let s:previous_buffer = ''
+
 func! executor#exec(start_line, end_line, count, ...)
   if !exists('g:loaded_buffr')
     call s:show_error('Please, install vim-buffr plugin first') | return
@@ -47,11 +49,25 @@ func! s:result(command, selection, count)
 endfunc
 
 func! s:open_result(result, buffer_name)
-  call buffr#create_buffer({
+  let l:buffer_name = a:buffer_name
+
+  if g:executor_reuse_buffer
+    if len(s:previous_buffer)
+      let l:buffer_name = s:previous_buffer
+    end
+    let s:previous_buffer = a:buffer_name
+  endif
+
+  call buffr#open_or_create_buffer({
     \ 'position': g:executor_position,
-    \ 'name': a:buffer_name
+    \ 'name': l:buffer_name
     \ })
   call s:set_buffer_defaults()
+
+  if g:executor_reuse_buffer
+    silent exec 'edit ' . escape(s:previous_buffer, ' ')
+  endif
+
   call append(0, split(a:result, "\n"))
   silent exec 'normal! Gdd'
 endfunc
