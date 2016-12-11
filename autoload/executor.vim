@@ -27,8 +27,7 @@ func! s:execute(start_line, end_line, count, command)
 endfunc
 
 func! s:selection(start_line, end_line)
-  let l:lines = getline(a:start_line, a:end_line)
-  return join(l:lines, "\n") . "\n"
+  return getline(a:start_line, a:end_line)
 endfunc
 
 func! s:command(command)
@@ -41,8 +40,14 @@ func! s:command(command)
 endfunc
 
 func! s:result(command, selection, count)
+  if len(a:selection) == 1
+    let l:command = a:command . ' ' . a:selection[0]
+    return system(l:command)
+  endif
+
   if a:count
-    return system(a:command, a:selection)
+    let l:selection = join(a:selection, "\n") . "\n"
+    return system(a:command, l:selection)
   endif
 
   return system(a:command)
@@ -77,7 +82,7 @@ func! s:buffer_name(command)
   let l:buffer_name = substitute(l:buffer_name, '{command}', a:command, 'g')
   let l:buffer_name = substitute(l:buffer_name, '{filename}', expand('%:t'), 'g')
 
-  return l:buffer_name
+  return escape(l:buffer_name, '|')
 endfunc
 
 func! s:set_buffer_defaults()
