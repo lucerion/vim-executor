@@ -1,6 +1,6 @@
 " ===========================================================================
-" Description:  Vim plugin that executes shell command with a buffer contents
-"               or selection and redirects output to a new buffer
+" Description:  Vim plugin that executes shell command and redirects output
+"               to a new buffer
 " Author:       Alexander Skachko <alexander.skachko@gmail.com>
 " Homepage:     https://github.com/lucerion/vim-executor
 " Version:      0.2

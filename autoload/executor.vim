@@ -1,6 +1,6 @@
 " ===========================================================================
-" Description:  Vim plugin that executes shell command with a buffer contents
-"               or selection and redirects output to a new buffer
+" Description:  Vim plugin that executes shell command and redirects output
+"               to a new buffer
 " Author:       Alexander Skachko <alexander.skachko@gmail.com>
 " Homepage:     https://github.com/lucerion/vim-executor
 " Version:      0.2
@@ -8,6 +8,8 @@
 " ===========================================================================
 
 let s:previous_buffer = ''
+let s:positions = ['top', 'bottom', 'left', 'right', 'tab']
+let s:default_position = 'bottom'
 
 func! executor#exec(start_line, end_line, ...)
   if !exists('g:loaded_buffr')
@@ -42,7 +44,7 @@ func! s:open_buffer(buffer_name)
   endif
 
   call buffr#open_or_create_buffer({
-    \ 'position': 'bottom',
+    \ 'position': s:buffer_position(),
     \ 'name': l:buffer_name
     \ })
   call s:set_buffer_defaults()
@@ -59,6 +61,14 @@ func! s:buffer_name(command)
   let l:name = escape(l:name, '|')
 
   return l:name
+endfunc
+
+func! s:buffer_position()
+  if index(s:positions, g:executor_position) < 0
+    return s:default_position
+  else
+    return g:executor_position
+  endif
 endfunc
 
 func! s:set_buffer_defaults()
