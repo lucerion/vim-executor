@@ -1,9 +1,9 @@
 " ===========================================================================
-" Description:  Vim plugin that executes shell command and redirects output
+" Description:  Vim plugin that execute shell command and redirect output
 "               to a new buffer
 " Author:       Alexander Skachko <alexander.skachko@gmail.com>
 " Homepage:     https://github.com/lucerion/vim-executor
-" Version:      0.2
+" Version:      0.2.0 (2016-12-20)
 " Licence:      BSD-3-Clause
 " ===========================================================================
 
