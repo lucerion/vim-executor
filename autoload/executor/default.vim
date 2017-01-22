@@ -7,9 +7,11 @@
 " Licence:      BSD-3-Clause
 " ===========================================================================
 
-func! executor#default#exec(command, selection)
+func! executor#default#exec(command, selection, open_result)
   let l:result = s:execute(a:command, a:selection)
-  call executor#open_result(split(l:result, "\n"), a:command)
+  if a:open_result
+    call executor#open_result(split(l:result, "\n"), a:command)
+  endif
 endfunc
 
 func! s:execute(command, selection)

@@ -46,11 +46,12 @@ COMMANDS                                                *vim-executor-commands*
 
                                                                         *:Exec*
 
-:[range]Exec {command}        Execute shell {command} and open new buffer
-                              with a command output. If one line selected
-                              this line will be executed as a command, with
-                              more than one - plugin will pass lines as a file
-                              to the command as argument.
+:[range]Exec[!] {command}     Execute shell {command} and open new buffer
+                              with the command output.
+                              If one line selected this line will be executed
+                              as a command, with more than one - plugin will
+                              pass lines to a command as an argument.
+                              If ! is given, buffer with result will not opened.
 
 ===============================================================================
 OPTIONS                                                  *vim-executor-options*

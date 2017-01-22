@@ -7,9 +7,10 @@
 " Licence:      BSD-3-Clause
 " ===========================================================================
 
-func! executor#async#exec(command, selection)
+func! executor#async#exec(command, selection, open_result)
   let s:command = a:command
   let s:result = []
+  let s:open_result = a:open_result
   call s:execute(a:command, a:selection)
 endfunc
 
@@ -36,5 +37,7 @@ func! s:out_callback(channel, data)
 endfunc
 
 func! s:exit_callback(job, status)
-  call executor#open_result(s:result, s:command)
+  if s:open_result
+    call executor#open_result(s:result, s:command)
+  end
 endfunc

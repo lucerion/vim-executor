@@ -11,7 +11,7 @@ let s:previous_buffer = ''
 let s:positions = ['top', 'bottom', 'left', 'right', 'tab']
 let s:default_position = 'bottom'
 
-func! executor#exec(start_line, end_line, ...)
+func! executor#exec(start_line, end_line, open_result, ...)
   if !exists('g:loaded_buffr')
     call s:show_error('Please, install vim-buffr plugin first') | return
   endif
@@ -20,9 +20,9 @@ func! executor#exec(start_line, end_line, ...)
   let l:selection = getline(a:start_line, a:end_line)
 
   if g:executor_exec_async && (v:version >= 800)
-    call executor#async#exec(l:command, l:selection)
+    call executor#async#exec(l:command, l:selection, a:open_result)
   else
-    call executor#default#exec(l:command, l:selection)
+    call executor#default#exec(l:command, l:selection, a:open_result)
   end
 endfunc
 
