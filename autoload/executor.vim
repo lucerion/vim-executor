@@ -11,7 +11,7 @@ let s:previous_buffer = ''
 let s:positions = ['top', 'bottom', 'left', 'right', 'tab']
 let s:default_position = 'bottom'
 
-func! executor#exec(start_line, end_line, open_result, ...)
+func! executor#exec(start_line, end_line, open_result, ...) abort
   if !exists('g:loaded_buffr')
     call s:show_error('Please, install vim-buffr plugin first') | return
   endif
@@ -23,23 +23,23 @@ func! executor#exec(start_line, end_line, open_result, ...)
     call executor#async#exec(l:command, l:selection, a:open_result)
   else
     call executor#default#exec(l:command, l:selection, a:open_result)
-  end
+  endif
 endfunc
 
-func! executor#open_result(result, command)
+func! executor#open_result(result, command) abort
   let l:buffer_name = s:buffer_name(a:command)
   call s:open_buffer(l:buffer_name)
   call append(0, a:result)
   silent normal! Gddgg
 endfunc
 
-func! s:open_buffer(buffer_name)
+func! s:open_buffer(buffer_name) abort
   let l:buffer_name = a:buffer_name
 
   if g:executor_reuse_buffer
     if len(s:previous_buffer)
       let l:buffer_name = s:previous_buffer
-    end
+    endif
     let s:previous_buffer = a:buffer_name
   endif
 
@@ -54,7 +54,7 @@ func! s:open_buffer(buffer_name)
   endif
 endfunc
 
-func! s:buffer_name(command)
+func! s:buffer_name(command) abort
   let l:name = g:executor_buffer_name
   let l:name = substitute(l:name, '{command}', a:command, 'g')
   let l:name = substitute(l:name, '{filename}', expand('%:t'), 'g')
@@ -63,15 +63,11 @@ func! s:buffer_name(command)
   return l:name
 endfunc
 
-func! s:buffer_position()
-  if index(s:positions, g:executor_position) < 0
-    return s:default_position
-  else
-    return g:executor_position
-  endif
+func! s:buffer_position() abort
+  return index(s:positions, g:executor_position) < 0 ? s:default_position : g:executor_position
 endfunc
 
-func! s:set_buffer_defaults()
+func! s:set_buffer_defaults() abort
   setlocal buftype=nofile
   setlocal bufhidden=wipe
   setlocal nobuflisted

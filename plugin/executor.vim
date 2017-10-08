@@ -10,6 +10,7 @@
 if exists('g:loaded_executor') || &compatible || v:version < 700
   finish
 endif
+let g:loaded_executor = 1
 
 if !exists('g:executor_position')
   let g:executor_position = 'bottom'
@@ -27,7 +28,4 @@ if !exists('g:executor_exec_async')
   let g:executor_exec_async = 1
 endif
 
-comm! -nargs=+ -bang -range=0 -complete=shellcmd Exec
-  \ call executor#exec(<line1>, <line2>, empty('<bang>'), <q-args>)
-
-let g:loaded_executor = 1
+comm! -nargs=+ -bang -range=0 -complete=shellcmd Exec call executor#exec(<line1>, <line2>, empty('<bang>'), <q-args>)
