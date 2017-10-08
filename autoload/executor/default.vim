@@ -3,7 +3,7 @@
 "               to a new buffer
 " Author:       Alexander Skachko <alexander.skachko@gmail.com>
 " Homepage:     https://github.com/lucerion/vim-executor
-" Version:      0.2.0 (2016-12-20)
+" Version:      1.0.0 (2017-10-08)
 " Licence:      BSD-3-Clause
 " ===========================================================================
 
