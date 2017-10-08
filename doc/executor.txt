@@ -4,7 +4,7 @@
 Author:             Alexander Skachko <alexander.skachko@gmail.com>
 Homepage:           https://github.com/lucerion/vim-executor
 Version:            0.2.0 (2016-12-20)
-Licence:            BSD-3-Clause (see LICENSE)
+Licence:            BSD-3-Clause (see vim-executor-license)
 
 ===============================================================================
 CONTENTS                                                         *vim-executor*
