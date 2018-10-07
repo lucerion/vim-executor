@@ -1,5 +1,5 @@
-*vim-executor.txt*    Vim plugin that execute shell command and redirect output
-                    to a new buffer
+*vim-executor.txt*    Vim plugin that executes a shell command and redirects
+                    output to a new buffer
 
 Author:             Alexander Skachko <alexander.skachko@gmail.com>
 Homepage:           https://github.com/lucerion/vim-executor
@@ -46,12 +46,12 @@ COMMANDS                                                *vim-executor-commands*
 
                                                                         *:Exec*
 
-:[range]Exec[!] {command}     Execute shell {command} and open new buffer
+:[range]Exec[!] {command}     Executes shell {command} and open a new buffer
                               with the command output.
-                              If one line selected this line will be executed
-                              as a command, with more than one - plugin will
-                              pass lines to a command as an argument.
-                              If ! is given, buffer with result will not opened.
+                              One selected line executes as a command, more
+                              then one - passes to command as an argument.
+                              If ! is given, buffer with the result not
+                              be opened.
 
 ===============================================================================
 OPTIONS                                                  *vim-executor-options*
@@ -72,7 +72,7 @@ A pattern for a buffer name. {command} will be replaced with executed command,
 
                                                       *g:executor_reuse_buffer*
 
-Reuse buffer with results instead of opening new one.
+Reuse buffer with results instead of opening a new one.
 
   Default value: 0
 
@@ -88,7 +88,7 @@ CHANGELOG                                              *vim-executor-changelog*
 1.0.0 (2017-10-08)~
 
   Changes
-    * execute command without opening result buffer
+    * execute a command without opening result buffer
     * documentation added
 
 0.2.0 (2016-12-20)~
