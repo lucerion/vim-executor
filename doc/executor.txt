@@ -21,23 +21,28 @@ INSTALL                                                  *vim-executor-install*
 Vundle                                https://github.com/VundleVim/Vundle.vim
 >
     Plugin 'lucerion/vim-executor'
+    Plugin 'lucerion/vim-buffr'
 <
 Pathogen                                https://github.com/tpope/vim-pathogen
 >
     cd ~/.vim/bundle
     git clone https://github.com/lucerion/vim-executor
+    git clone https://github.com/lucerion/vim-buffr
 <
 NeoBundle                             https://github.com/Shougo/neobundle.vim
 >
     NeoBundle 'lucerion/vim-executor'
+    NeoBundle 'lucerion/vim-buffr'
 <
 vim-plug                                 https://github.com/junegunn/vim-plug
 >
     Plug 'lucerion/vim-executor'
+    Plug 'lucerion/vim-buffr'
 <
 Manual
 >
     git clone https://github.com/lucerion/vim-executor
+    git clone https://github.com/lucerion/vim-buffr
 <
     copy all of the files into your ~/.vim directory
 
@@ -52,16 +57,12 @@ COMMANDS                                                *vim-executor-commands*
                               then one - passes to command as an argument.
                               If ! is given, buffer with the result not
                               be opened.
+                              Window split modes (|leftabove|, |rightbelow|,
+                              |topleft|, |botright|, |vsplit|, |tab|, etc)
+                              are available.
 
 ===============================================================================
 OPTIONS                                                  *vim-executor-options*
-
-                                                          *g:executor_position*
-
-Result buffer position.
-
-  Possible values: 'top', 'bottom', 'left', 'right', 'tab'
-  Default value: 'bottom'
 
                                                        *g:executor_buffer_name*
 
@@ -75,12 +76,6 @@ A pattern for a buffer name. {command} will be replaced with executed command,
 Reuse buffer with results instead of opening a new one.
 
   Default value: 0
-
-                                                        *g:executor_exec_async*
-
-Enable/disable async command execution (only for vim version > 8.0).
-
-  Default value: 1
 
 ===============================================================================
 CHANGELOG                                              *vim-executor-changelog*

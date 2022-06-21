@@ -7,14 +7,15 @@
 " Licence:      BSD-3-Clause
 " ===========================================================================
 
-func! executor#async#exec(command, selection, open_result) abort
+func! executor#async#exec(command, selection, open_result, mods) abort
   let s:command = a:command
   let s:result = []
   let s:open_result = a:open_result
-  call s:execute(a:command, a:selection)
+  let s:mods = a:mods
+  call s:execute(a:command, a:selection, a:mods)
 endfunc
 
-func! s:execute(command, selection) abort
+func! s:execute(command, selection, mods) abort
   let l:command = a:command
 
   if len(a:selection) == 1 && !empty(a:selection[0])
@@ -38,6 +39,6 @@ endfunc
 
 func! s:exit_callback(job, status) abort
   if s:open_result
-    call executor#open_result(s:result, s:command)
+    call executor#open_result(s:result, s:command, s:mods)
   endif
 endfunc

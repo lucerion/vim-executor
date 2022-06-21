@@ -12,10 +12,6 @@ if exists('g:loaded_executor') || &compatible || v:version < 700
 endif
 let g:loaded_executor = 1
 
-if !exists('g:executor_position')
-  let g:executor_position = 'bottom'
-endif
-
 if !exists('g:executor_buffer_name')
   let g:executor_buffer_name = '{command}'
 endif
@@ -24,8 +20,5 @@ if !exists('g:executor_reuse_buffer')
   let g:executor_reuse_buffer = 0
 endif
 
-if !exists('g:executor_exec_async')
-  let g:executor_exec_async = 1
-endif
-
-comm! -nargs=+ -bang -range=0 -complete=shellcmd Exec call executor#exec(<line1>, <line2>, empty('<bang>'), <q-args>)
+comm! -nargs=+ -bang -range=0 -complete=shellcmd Exec
+  \ call executor#exec(<line1>, <line2>, empty('<bang>'), <q-mods>, <q-args>)

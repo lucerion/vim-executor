@@ -8,10 +8,8 @@
 " ===========================================================================
 
 let s:previous_buffer = ''
-let s:positions = ['top', 'bottom', 'left', 'right', 'tab']
-let s:default_position = 'bottom'
 
-func! executor#exec(start_line, end_line, open_result, ...) abort
+func! executor#exec(start_line, end_line, open_result, mods, ...) abort
   if !exists('g:loaded_buffr')
     call s:show_error('Please, install vim-buffr plugin first') | return
   endif
@@ -19,21 +17,21 @@ func! executor#exec(start_line, end_line, open_result, ...) abort
   let l:command = join(a:000)
   let l:selection = getline(a:start_line, a:end_line)
 
-  if g:executor_exec_async && (v:version >= 800)
-    call executor#async#exec(l:command, l:selection, a:open_result)
+  if v:version >= 800
+    call executor#async#exec(l:command, l:selection, a:open_result, a:mods)
   else
-    call executor#default#exec(l:command, l:selection, a:open_result)
+    call executor#default#exec(l:command, l:selection, a:open_result, a:mods)
   endif
 endfunc
 
-func! executor#open_result(result, command) abort
+func! executor#open_result(result, command, mods) abort
   let l:buffer_name = s:buffer_name(a:command)
-  call s:open_buffer(l:buffer_name)
+  call s:open_buffer(l:buffer_name, a:mods)
   call append(0, a:result)
   silent normal! Gddgg
 endfunc
 
-func! s:open_buffer(buffer_name) abort
+func! s:open_buffer(buffer_name, mods) abort
   let l:buffer_name = a:buffer_name
 
   if g:executor_reuse_buffer
@@ -43,10 +41,7 @@ func! s:open_buffer(buffer_name) abort
     let s:previous_buffer = a:buffer_name
   endif
 
-  call buffr#open_or_create_buffer({
-    \ 'position': s:buffer_position(),
-    \ 'name': l:buffer_name
-    \ })
+  call buffr#open_or_create_buffer(l:buffer_name, a:mods)
   call s:set_buffer_defaults()
 
   if g:executor_reuse_buffer
@@ -61,10 +56,6 @@ func! s:buffer_name(command) abort
   let l:name = escape(l:name, '|')
 
   return l:name
-endfunc
-
-func! s:buffer_position() abort
-  return index(s:positions, g:executor_position) < 0 ? s:default_position : g:executor_position
 endfunc
 
 func! s:set_buffer_defaults() abort

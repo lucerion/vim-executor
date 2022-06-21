@@ -7,10 +7,10 @@
 " Licence:      BSD-3-Clause
 " ===========================================================================
 
-func! executor#default#exec(command, selection, open_result) abort
+func! executor#default#exec(command, selection, open_result, mods) abort
   let l:result = s:execute(a:command, a:selection)
   if a:open_result
-    call executor#open_result(split(l:result, "\n"), a:command)
+    call executor#open_result(split(l:result, "\n"), a:command, a:mods)
   endif
 endfunc
 
