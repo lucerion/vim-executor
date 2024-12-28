@@ -17,45 +17,11 @@ License                                                  |vim-executor-license|
 
 ===============================================================================
 INSTALL                                                  *vim-executor-install*
-
-Vim packages (Vim 8, Neovim)
 >
     mkdir -p ~/.vim/pack/lucerion/start
     cd ~/.vim/pack/lucerion/start
     git clone https://github.com/lucerion/vim-executor
 <
-vim-plug                                 https://github.com/junegunn/vim-plug
->
-    Plug 'lucerion/vim-executor'
-    Plug 'lucerion/vim-buffr'
-<
-Vundle                                https://github.com/VundleVim/Vundle.vim
->
-    Plugin 'lucerion/vim-executor'
-    Plugin 'lucerion/vim-buffr'
-<
-Pathogen                                https://github.com/tpope/vim-pathogen
->
-    cd ~/.vim/bundle
-    git clone https://github.com/lucerion/vim-executor
-    git clone https://github.com/lucerion/vim-buffr
-<
-dein.vim                                   https://github.com/Shougo/dein.vim
->
-    call dein#add('lucerion/vim-executor')
-<
-NeoBundle                             https://github.com/Shougo/neobundle.vim
->
-    NeoBundle 'lucerion/vim-executor'
-    NeoBundle 'lucerion/vim-buffr'
-<
-Manual
->
-    git clone https://github.com/lucerion/vim-executor
-    git clone https://github.com/lucerion/vim-buffr
-<
-    copy all of the files into your ~/.vim directory
-
 ===============================================================================
 COMMANDS                                                *vim-executor-commands*
 
